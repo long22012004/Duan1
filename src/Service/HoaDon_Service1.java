@@ -48,6 +48,36 @@ public class HoaDon_Service1 {
         }
 
     }
+    
+    
+      public List<HoaDon1> timKiem(String ngaytao) {
+        sql = "select nv.MaNhanVien as manv,hd.TongTien as tongtien,nv.TenNhanVien as tennv,kh.TenKhachHang as tenkh,hd.NgayTao as nt,hd.TrangThai as tt,kh.Sdt as sdt,kh.DiaChi as dc,hd.ID_HoaDon as id from HoaDon hd inner join "
+                + "NhanVien nv on nv.ID_NhanVien=hd.ID_NhanVien inner join KhachHang kh on kh.ID_KhachHang=hd.ID_KhachHang where hd.NgayTao = ?";
+        List<HoaDon1> listH = new ArrayList<>();
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ngaytao);
+            List<HoaDon1> list = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDon1 hd = new HoaDon1();
+                hd.setId(rs.getInt("id"));
+                hd.setMaNV(rs.getString("manv"));
+                hd.setTenNhanVien(rs.getString("tennv"));
+                hd.setTenKhachHang(rs.getString("tenkh"));
+                hd.setTrangThai(rs.getString("tt"));
+                hd.setDiaChi(rs.getString("dc"));
+                hd.setNgayTao(rs.getObject("nt", Date.class));
+                hd.setSdt(rs.getString("sdt"));
+                hd.setTongTien(rs.getFloat("tongtien"));
+                list.add(hd);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+
+    }
 
     public List<Object[]> HoaDonSanPham(int id) {
         String sql = """

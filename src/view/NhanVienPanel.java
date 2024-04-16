@@ -77,8 +77,9 @@ public class NhanVienPanel extends javax.swing.JPanel {
                 nv.getEmail(),
                 nv.isGioitinh() ? "Nam" : "Nữ",
                 format.format(nv.getLuong()),
-                nv.getTennv(),
-                nv.getTennv(), nv.isTrangthai() ? "Đang làm" : "Nghĩ Làm"});
+                nv.getTenCV(),
+                nv.getTenTK(),
+                nv.isTrangthai() ? "Đang làm" : "Nghĩ Làm"});
         }
 
     }
@@ -305,6 +306,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
 
         btnGroupGender = new javax.swing.ButtonGroup();
         btnGroupOffice = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         txtten = new javax.swing.JTextField();
@@ -387,9 +389,11 @@ public class NhanVienPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Mã NV");
 
+        buttonGroup1.add(rdolam);
         rdolam.setSelected(true);
         rdolam.setText("Đang làm");
 
+        buttonGroup1.add(rdonghi);
         rdonghi.setText("Đã Nghỉ");
 
         cbbCV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -781,6 +785,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnclear1;
     private javax.swing.JButton btndelete1;
     private javax.swing.JButton btnupdate1;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbCV;
     private javax.swing.JComboBox<String> cbbTK;
     private javax.swing.JLabel jLabel1;

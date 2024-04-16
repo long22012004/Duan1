@@ -116,8 +116,8 @@ public class Nhanvienservice {
             pstm.setString(5, nv.getEmail());
             pstm.setBoolean(6, nv.isTrangthai());
             pstm.setBoolean(7, nv.isGioitinh());
-            pstm.setInt(8, nv.getNamsinh());
-            pstm.setFloat(9, nv.getLuong());
+            pstm.setFloat(8, nv.getLuong());
+            pstm.setInt(9, nv.getNamsinh());
             pstm.setInt(10, nv.getIdchucvu());
             pstm.setInt(11, nv.getIdtaikhoan());
             pstm.setObject(12, id);
@@ -128,8 +128,8 @@ public class Nhanvienservice {
         return row > 0;
     }
 
-    public NhanVien finNhanVien(String tk,String matKhau) {
-        String sql="""
+    public NhanVien finNhanVien(String tk, String matKhau) {
+        String sql = """
 select NhanVien.ID_NhanVien as idnv,NhanVien.MaNhanVien as manv,NhanVien.TenNhanVien as tennv
                      ,NhanVien.DiaChi as dc,NhanVien.Email as em,NhanVien.GioiTinh as gt,NhanVien.Luong as l,
                      NhanVien.Sdt as sdt
@@ -139,12 +139,12 @@ select NhanVien.ID_NhanVien as idnv,NhanVien.MaNhanVien as manv,NhanVien.TenNhan
                      TaiKhoanNhanvien.ID_TaiKhoanNhanVien=NhanVien.ID_TaiKhoanNhanVien inner join ChucVu on ChucVu.ID_ChucVu=NhanVien.ID_ChucVu 
                      where TaiKhoanNhanvien.Username = ? and TaiKhoanNhanvien.Password = ?
                     """;
-        try(Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, tk);
             ps.setObject(2, matKhau);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                NhanVien nv=new NhanVien();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                NhanVien nv = new NhanVien();
                 nv.setIdnv(rs.getInt("idnv"));
                 nv.setManv(rs.getString("manv"));
                 nv.setTennv(rs.getString("tennv"));
@@ -163,7 +163,8 @@ select NhanVien.ID_NhanVien as idnv,NhanVien.MaNhanVien as manv,NhanVien.TenNhan
         }
         return null;
     }
-      public List<NhanVien> timKiem(Object input) {
+
+    public List<NhanVien> timKiem(Object input) {
         String sql
                 = """    
                  select nv.ID_NhanVien as idnv,nv.MaNhanVien as mnv,nv.TenNhanVien as tnv,nv.DiaChi as dc,nv.Email as em
@@ -173,9 +174,9 @@ select NhanVien.ID_NhanVien as idnv,NhanVien.MaNhanVien as manv,NhanVien.TenNhan
                                     where nv.MaNhanVien like ? or nv.TenNhanVien like ? or NV.Sdt like ? 
                   """;
         try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setObject(1, "%"+input+"%");
-            ps.setObject(2, "%"+input+"%");
-            ps.setObject(3, "%"+input+"%");
+            ps.setObject(1, "%" + input + "%");
+            ps.setObject(2, "%" + input + "%");
+            ps.setObject(3, "%" + input + "%");
             List<NhanVien> list = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

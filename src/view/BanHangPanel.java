@@ -108,7 +108,7 @@ public class BanHangPanel extends javax.swing.JPanel {
         modelKH.removeAllElements();
         modelKH.addElement("Khách Hàng");
         for (KhachHang kh : listkh) {
-            modelKH.addElement(kh.getTenkh());
+            modelKH.addElement(kh.getTenkh() + " " + kh.getSdt());
         }
     }
 
@@ -151,7 +151,7 @@ public class BanHangPanel extends javax.swing.JPanel {
     private void showDataDSSP(List<modelChiTietSanPham> listttChiTietSanPhams) {
         DSSPModel.setRowCount(0);
         for (modelChiTietSanPham mctsp : listttChiTietSanPhams) {
-            Object[] row = {false, mctsp.getMaSp(), mctsp.getTenSanPham(),mctsp.getTenQuocGia(),   mctsp.getTenNhaCungCap(),mctsp.getTenChatLieu(), mctsp.getTenKieuDang(),
+            Object[] row = {false, mctsp.getMaSp(), mctsp.getTenSanPham(), mctsp.getTenQuocGia(), mctsp.getTenNhaCungCap(), mctsp.getTenChatLieu(), mctsp.getTenKieuDang(),
                 mctsp.getTenMauSac(), mctsp.getKichThuoc(), mctsp.getDonGia(),
                 mctsp.getSoLuong(), mctsp.getMoTa()};
             DSSPModel.addRow(row);
@@ -762,6 +762,11 @@ public class BanHangPanel extends javax.swing.JPanel {
         jLabel2.setText("Khách Hàng");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-update-24 (1).png"))); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -990,6 +995,12 @@ public class BanHangPanel extends javax.swing.JPanel {
             this.showDataDSSP(ctspr.timKiem(tim));
         }
     }//GEN-LAST:event_txtTimKiemKeyReleased
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        listKH=khsv.getAll();
+        showKH(listKH);
+    }//GEN-LAST:event_jButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

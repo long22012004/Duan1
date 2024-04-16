@@ -37,7 +37,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
     void fillTable(List<KhachHang> listKH) {
         model.setRowCount(0);
         for (KhachHang kh : listKH) {
-            model.addRow(new Object[]{kh.getId_kh(), kh.getMa(), kh.getTenkh(), kh.getDiaChi(), kh.getSdt(), kh.getEmail(), kh.isGioiTinh() ? "Nam" : "Nữ", kh.getNamSinh()});
+            model.addRow(new Object[]{kh.getId_kh(), kh.getMa(), kh.getTenkh(), kh.getDiaChi(), kh.getSdt(), kh.getEmail(), kh.isGioiTinh() ? "Nữ" : "Nam", kh.getNamSinh()});
         }
 
     }
@@ -50,9 +50,9 @@ public class KhachHangPanel extends javax.swing.JPanel {
         txtsdt.setText(kh.getSdt());
         txtemail.setText(kh.getEmail());
         if (kh.isGioiTinh() == true) {
-            rdonam.setSelected(true);
+           rdonu.setSelected(true);
         } else {
-            rdonu.setSelected(true);
+            rdonam.setSelected(true);
         }
         txtnamsinh.setText(String.valueOf(kh.getNamSinh()));
     }

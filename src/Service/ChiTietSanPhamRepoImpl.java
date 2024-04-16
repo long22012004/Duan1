@@ -142,7 +142,7 @@ public class ChiTietSanPhamRepoImpl {
                                           			KichThuoc.ID_KichThuoc=DepChiTiet.ID_KichThuoc inner join Dep on Dep.ID_Dep=DepChiTiet.ID_Dep inner 
                                           			join ChatLieu on ChatLieu.ID_ChatLieu=Dep.ID_ChatLieu inner join KieuDang on KieuDang.ID_KieuDang=Dep.ID_KieuDang
                                           			inner join NhaCungCap on NhaCungCap.ID_NhaCungCap=Dep.ID_NhaCungCap inner join XuatXu on XuatXu.ID_XuatXu=Dep.ID_XuatXu
-                                          			 where Dep.MaDep like ? or Dep.TenDep like ?
+                                          			 where Dep.TrangThai = 1 and (Dep.MaDep like ? or Dep.TenDep like ?)
                   """;
         List<modelChiTietSanPham> list = new ArrayList<>();
         try {

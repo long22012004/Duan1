@@ -74,12 +74,13 @@ if (tbltk.getValueAt(index, 3).toString().equalsIgnoreCase("Đang hoạt động
         int listSize = listsp.size();
         for (int i = 0; i < listSize; i++) {
             if (listsp.get(i).getUserName().equalsIgnoreCase(txtuser.getText())) {
-                JOptionPane.showMessageDialog(this, "Ma nay da ton tai truoc do");
+                JOptionPane.showMessageDialog(this, "Ten nay da ton tai truoc do");
                 return false;
             }
         }
         return true;
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
